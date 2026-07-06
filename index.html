@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফ্রেন্ডস ক্রিকেট ক্লাব</title>
+    
+    <!-- গুগল ফন্টস থেকে প্রফেশনাল বাংলা ফন্ট 'Hind Siliguri' যুক্ত করা হলো -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght=400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* বেসিক স্টাইল ও ফুল-পেজ ব্যাকগ্রাউন্ড */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            /* টেস্ট করার সুবিধার জন্য একটি অনলাইন স্টেডিয়াম ব্যাকগ্রাউন্ড ইমেজ ব্যবহার করা হয়েছে */
+            background: linear-gradient(rgba(17, 34, 17, 0.85), rgba(17, 34, 17, 0.85)), url('bg1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            line-height: 1.7;
+        }
+
+        /* হেডার ও ইসলামি বাণী সেকশন */
+        header {
+            background-color: rgba(11, 26, 14, 0.9);
+            padding: 20px 20px 25px 20px;
+            text-align: center;
+            border-bottom: 3px solid #2ecc71;
+            position: relative;
+        }
+
+        /* ইসলামিক টেক্সট কন্টেইনার */
+        .islamic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto 20px auto;
+            border-bottom: 1px dashed rgba(241, 196, 15, 0.4);
+            padding-bottom: 10px;
+        }
+
+        .islamic-left, .islamic-right {
+            font-size: 16px;
+            color: #f1c40f;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .bismillah {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* লোগো ইমেজের কন্টেইনার */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .club-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f1c40f;
+            flex-shrink: 0;
+            background-color: #2ecc71;
+        }
+
+        .logo-area h1 {
+            color: #2ecc71;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .logo-area p {
+            color: #f1c40f;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* মেইন কন্টেইনার */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* সেকশন স্টাইল */
+        section {
+            background-color: rgba(26, 51, 34, 0.85);
+            margin: 25px 0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        h2 {
+            color: #f1c40f;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #2ecc71;
+            padding-bottom: 8px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        #about p {
+            font-size: 16px;
+            text-align: justify;
+            color: #e0e0e0;
+        }
+
+        /* স্কোয়াড বা খেলোয়াড়দের গ্রিড লেআউট */
+        .squad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        /* খেলোয়াড়ের কার্ড স্টাইল */
+        .player-card {
+            background-color: rgba(11, 26, 14, 0.95);
+            border: 2px solid #2ecc71;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .player-img-area {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            border-bottom: 2px solid #2ecc71;
+            background-color: #000;
+        }
+
+        .player-img-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .player-img-area img:hover {
+            opacity: 0.8;
+        }
+
+        /* ছবির নিচের ডিটেইলস এরিয়া */
+        .player-details {
+            padding: 12px 8px;
+            text-align: center;
+        }
+
+        /* খেলোয়াড়ের নামের লিংকের বিশেষ স্টাইল */
+        .player-name-link {
+            text-decoration: none;
+            color: #ffffff;
+            display: inline-block;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .player-name-link h3 {
+            font-size: 17px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        /* নামগুলোর উপর মাউস নিলে হালকা সবুজ হবে এবং সামান্য বড় হবে */
+        .player-name-link:hover {
+            color: #2ecc71;
+            transform: scale(1.05);
+        }
+
+        .player-details .role {
+            font-size: 13px;
+            color: #f1c40f;
+            display: block;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        /* গ্যালারি সেকশন গ্রিড */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 6px;
+            border: 2px solid #2ecc71;
+            height: 200px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ম্যাচ টেবিল স্টাইল */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(46, 204, 113, 0.3);
+            font-size: 15px;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #0b1a0e;
+            color: #2ecc71;
+            font-weight: 600;
+            font-size: 16px;
+            border-bottom: 2px solid #2ecc71;
+        }
+
+        td {
+            color: #f5f5f5;
+        }
+
+        tr:hover {
+            background-color: rgba(34, 68, 44, 0.4);
+        }
+
+        /* স্কোরকার্ড বক্স ডিজাইন */
+        .score-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 190px;
+            padding: 4px 0;
+        }
+
+        .score-row {
+            background: rgba(11, 26, 14, 0.8);
+            padding: 6px 10px;
+            border-radius: 5px;
+            border-left: 3px solid #f1c40f;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .score-row.our-team {
+            border-left-color: #2ecc71;
+            background: rgba(20, 46, 28, 0.8);
+        }
+
+        .team-name {
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+
+        .score-row.our-team .team-name {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .team-runs {
+            color: #f1c40f;
+            font-weight: 700;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .score-row.our-team .team-runs {
+            color: #2ecc71;
+        }
+
+        .over-text {
+            font-size: 11px;
+            color: #aaa;
+            font-weight: normal;
+            margin-left: 4px;
+        }
+
+        /* ফলাফলের জন্য বিশেষ টেক্সট কালার ও ব্যাজ */
+        .win-badge, .loss-badge {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .win-badge {
+            background-color: rgba(46, 204, 113, 0.15);
+            color: #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.4);
+        }
+
+        .loss-badge {
+            background-color: rgba(231, 76, 60, 0.15);
+            color: #ff4d4d;
+            border: 1px solid rgba(231, 76, 60, 0.4);
+        }
+
+        /* ফুটার */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #0b1a0e;
+            color: #999;
+            font-size: 15px;
+            margin-top: 40px;
+            border-top: 1px solid #2ecc71;
+        }
+
+        /* ইমেজ বড় করার মোডাল (Lightbox) স্টাইল */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border: 3px solid #2ecc71;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+            animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0);}
+            to {transform: scale(1);}
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            color: #f1c40f;
+            font-size: 45px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #2ecc71;
+            text-decoration: none;
+        }
+
+        /* মোবাইল স্ক্রিনের জন্য রেসপনসিভ অ্যাডজাস্টমেন্ট */
+        @media (max-width: 768px) {
+            th, td {
+                padding: 10px 8px;
+                font-size: 13px;
+            }
+            .score-container {
+                min-width: 150px;
+            }
+            .score-row {
+                padding: 4px 6px;
+                font-size: 12px;
+            }
+            .win-badge, .loss-badge {
+                padding: 4px 6px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .islamic-header {
+                flex-direction: column;
+                gap: 8px;
+                padding-bottom: 15px;
+            }
+            .bismillah {
+                order: -1;
+                font-size: 18px;
+            }
+            .islamic-left, .islamic-right {
+                font-size: 14px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- হেডার সেকশন -->
+    <header>
+        <div class="islamic-header">
+            <div class="islamic-left">আল্লাহ সর্বশক্তিমান</div>
+            <div class="bismillah">বিসমিল্লাহির রাহমানির রাহিম</div>
+            <div class="islamic-right">আল্লাহু মহান</div>
+        </div>
+
+        <div class="logo-area">
+            <div class="logo-container">
+                <!-- ডামি লোগো ১ এবং ২ ব্যবহার করা হয়েছে ইন্টারনেটের মাধ্যমে -->
+                <img src="logo1.jpg" alt="Friends Cricket Club Logo 1" class="club-logo">
+                <img src="logo2.jpg" alt="Friends Cricket Club Logo 2" class="club-logo">
+            </div>
+            <h1>Friends Cricket Club</h1>
+            <p>একতা, শৃঙ্খলা ও বিজয়</p>
+        </div>
+    </header>
+
+    <!-- মূল কন্টেন্ট -->
+    <div class="container">
+
+        <!-- ক্লাব পরিচিতি -->
+        <section id="about">
+            <h2>ক্লাব পরিচিতি</h2>
+            <p>স্বাগতম ফ্রেন্ডস ক্রিকেট ক্লাবের অফিসিয়াল ওয়েবসাইটে। ২০১৭ সালে (ESTD 2017) একঝাঁক ক্রিকেটপ্রেমী বন্ধুদের হাত ধরে যাত্রা শুরু করে ফ্রেন্ডস ক্রিকেট ক্লাব। কেবল মাঠের ১১ জন খেলোয়াড় নয়, আমরা মাঠ এবং মাঠের বাইরে একে অপরের খাঁটি বন্ধু। আমাদের ক্লাবের মূল লক্ষ্য হলো—সুস্থ ক্রীড়া সংস্কৃতির চর্চা করা, নিজেদের ফিট রাখা এবং দলগত প্রচেষ্টার মাধ্যমে প্রতিটি ম্যাচে সেরাটা উজাড় করে দেওয়া। বন্ধুদের একসাথে ক্রিকেট খেলার স্বপ্ন এবং মাঠ কাঁপানোর প্রত্যয় নিয়ে আমাদের এই ক্লাবের যাত্রা শুরু। আমরা নিয়মিত স্থানীয় ও বিভিন্ন টুর্নামেন্টে অংশগ্রহণ করি এবং ক্রিকেটের মূল চেতনা বজায় রেখে এগিয়ে চলছি এবং ভবিষ্যতেও চলব ইনশাআল্লাহ।</p>
+        </section>
+
+        <!-- বর্তমান স্কোয়াড (২২ জন প্লেয়ার) -->
+        <section id="squad">
+            <h2>আমাদের স্কোয়াড (খেলোয়াড়বৃন্দ)</h2>
+            <div class="squad-grid">
+                
+                <!-- খেলোয়াড়দের জন্য ডামি প্রোফাইল ইমেজ ব্যবহার করা হয়েছে যা অনলাইনে কাজ করবে -->
+                <!-- ১. শরিফুল -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="shariful.jpg" alt="শরিফুল" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>শরিফুল</h3>
+                        </a>
+                        <span class="role">ব্যাটসম্যান (অধিনায়ক)</span>
+                    </div>
+                </div>
+
+                <!-- ২. রাশেদুল -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="rashidul.jpg" alt="রাশেদুল" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>রাশেদুল</h3>
+                        </a>
+                        <span class="role">উইকেট কিপার-ব্যাটসম্যান</span>
+                    </div>
+                </div>
+
+                <!-- ৩. মিলন -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="milon.jpg" alt="মিলন" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>মিলন</h3>
+                        </a>
+                        <span class="role">অলরাউন্ডার</span>
+                    </div>
+                </div>
+
+                <!-- ৪. দিপু -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="dipu.jpg" alt="দিপু" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>দিপু</h3>
+                        </a>
+                        <span class="role">অলরাউন্ডার</span>
+                    </div>
+                </div>
+
+                <!-- ৫. জিসান -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="jisan.jpg" alt="জিসান" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>জিসান</h3>
+                        </a>
+                        <span class="role">অলরাউন্ডার</span>
+                    </div>
+                </div>
+
+                <!-- ৬. রায়হান -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="rayhan.jpg" alt="রায়হান" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>রায়হান</h3>
+                        </a>
+                        <span class="role">অলরাউন্ডার</span>
+                    </div>
+                </div>
+
+                <!-- ৭. আরাফাত -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="arafat.jpg" alt="আরাফাত" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>আরাফাত</h3>
+                        </a>
+                        <span class="role">অলরাউন্ডার</span>
+                    </div>
+                </div>
+
+                <!-- ৮. আল-আমিন -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="alamin.jpg" alt="আল-আমিন" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>আল-আমিন</h3>
+                        </a>
+                        <span class="role">অলরাউন্ডার</span>
+                    </div>
+                </div>
+
+                <!-- ৯. সেলিম -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="selim.jpg" alt="সেলিম" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>সেলিম</h3>
+                        </a>
+                        <span class="role">ব্যাটসম্যান</span>
+                    </div>
+                </div>
+
+                <!-- ১০. হাসান -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="hasan.jpg" alt="হাসান" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>হাসান</h3>
+                        </a>
+                        <span class="role">ব্যাটসম্যান</span>
+                    </div>
+                </div>
+
+                <!-- ১১. রওশান -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="rowsan.jpg" alt="রওশান" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>রওশান</h3>
+                        </a>
+                        <span class="role">ব্যাটসম্যান</span>
+                    </div>
+                </div>
+
+                <!-- ১২. ফরিদ -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="farid.jpg" alt="ফরিদ" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>ফরিদ</h3>
+                        </a>
+                        <span class="role">ব্যাটসম্যান</span>
+                    </div>
+                </div>
+
+                <!-- ১৩. নাঈম -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="nayem.jpg" alt="নাঈম" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>নাঈম</h3>
+                        </a>
+                        <span class="role">উইকেট কিপার-ব্যাটসম্যান</span>
+                    </div>
+                </div>
+
+                <!-- ১৪. রিয়াজ -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="riyaz.jpg" alt="রিয়াজ" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>রিয়াজ</h3>
+                        </a>
+                        <span class="role">উইকেট কিপার-ব্যাটসম্যান</span>
+                    </div>
+                </div>
+
+                <!-- ১৫. সাব্বির -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="sabbir.jpg" alt="সাব্বির" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>সাব্বির</h3>
+                        </a>
+                        <span class="role">ব্যাটসম্যান</span>
+                    </div>
+                </div>
+
+                <!-- ১৬. তানভীর -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="tanvir.jpg" alt="তানভীর" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>তানভীর</h3>
+                        </a>
+                        <span class="role">বোলিং-অলরাউন্ডার</span>
+                    </div>
+                </div>
+
+                <!-- ১৭. শাওন -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="shawon.jpg" alt="শাওন" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>শাওন</h3>
+                        </a>
+                        <span class="role">বোলার</span>
+                    </div>
+                </div>
+
+                <!-- ১৮. আরিফ -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="arif.jpg" alt="আরিফ" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>আরিফ</h3>
+                        </a>
+                        <span class="role">বোলার</span>
+                    </div>
+                </div>
+
+                <!-- ১৯. মাহিম -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="mahim.jpg" alt="মাহিম" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>মাহিম</h3>
+                        </a>
+                        <span class="role">বোলার</span>
+                    </div>
+                </div>
+
+                <!-- ২০. মারুফ -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="maruf.jpg" alt="মারুফ" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>মারুফ</h3>
+                        </a>
+                        <span class="role">বোলার</span>
+                    </div>
+                </div>
+
+                <!-- ২১. রতন -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="raton.jpg" alt="রতন" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>রতন</h3>
+                        </a>
+                        <span class="role">ব্যাটিং- উইকেট কিপার</span>
+                    </div>
+                </div>
+
+                <!-- ২২. টিটু -->
+                <div class="player-card">
+                    <div class="player-img-area">
+                        <img src="titu.jpg" alt="টিটু" class="gallery-trigger">
+                    </div>
+                    <div class="player-details">
+                        <a href="https://chshare.link/player/rmV73w" class="player-name-link" target="_blank">
+                            <h3>টিটু</h3>
+                        </a>
+                        <span class="role">অলরাউন্ডার</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- টেবিল ১: আসন্ন ম্যাচের সময়সূচী -->
+        <section id="upcoming-matches">
+            <h2>আসন্ন ম্যাচের সময়সূচী</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>তারিখ ও সময়</th>
+                            <th>টিমের নাম (প্রতিপক্ষ)</th>
+                            <th>খেলার স্থান</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>১০ জুলাই, ২০২৬<br><small>সকাল ৭:৩০ টা</small></td>
+                            <td>মুনতাসির স্পোর্টিং ক্লাব</td>
+                            <td>আমিন মোহাম্মদ মডেল টাউন সাভার,ঢাকা</td>
+                        </tr>
+                        <tr>
+                            <td>১৭ জুলাই, ২০২৬<br><small>সকাল ৭:৩০ টা</small></td>
+                            <td>ইউনিটি ক্রিকেট ক্লাব</td>
+                            <td>আমিন মোহাম্মদ মডেল টাউন সাভার</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- টেবিল ২: ম্যাচ হিস্টরি (স্কোরকার্ড ও ফলাফল) -->
+        <section id="match-history">
+            <h2>ম্যাচ হিস্টরি ও ফলাফল</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>তারিখ</th>
+                            <th>প্রতিপক্ষ দল</th>
+                            <th>স্কোরকার্ড</th>
+                            <th>ফলাফল</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- গত ম্যাচের হিস্টরি ১ -->
+                        <tr>
+                            <td>১৯ জুন, ২০২৬</td>
+                            <td>রেডিয়েন্টস জিন্স লিমিটেড</td>
+                            <td>
+                                <div class="score-container">
+                                    <div class="score-row our-team">
+                                        <span class="team-name">ফ্রেন্ডস ক্রিকেট ক্লাব</span>
+                                        <span class="team-runs">১৪১/৫ <span class="over-text">(১৪ ওভার)</span></span>
+                                    </div>
+                                    <div class="score-row">
+                                        <span class="team-name">রেডিয়েন্টস জিন্স লিমিটেড</span>
+                                        <span class="team-runs">৬৩/১০ <span class="over-text">(১৬ ওভার)</span></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="win-badge">৭৮ রানে জয়ী</span></td>
+                        </tr>
+                        <!-- গত ম্যাচের হিস্টরি ২ -->
+                        <tr>
+                            <td>২৬ জুন, ২০২৬</td>
+                            <td>হংকুন স্পোটিং ক্লাব</td>
+                            <td>
+                                <div class="score-container">
+                                    <div class="score-row">
+                                        <span class="team-name">ফ্রেন্ডস ক্রিকেট ক্লাব</span>
+                                        <span class="team-runs">১৪১/১০ <span class="over-text">(১৩ ওভার)</span></span>
+                                    </div>
+                                    <div class="score-row our-team">
+                                        <span class="team-name">হংকুন স্পোটিং ক্লাব</span>
+                                        <span class="team-runs">১০৬/১০<span class="over-text">(১২.৩ ওভার)</span></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="win-badge">৩৫ রানে জয়ী</span></td>
+                        </tr>
+                        <!-- গত ম্যাচের হিস্টরি ৩ -->
+                        <tr>
+                            <td>০৩ জুলাই, ২০২৬</td>
+                            <td>কিং সুপার স্টার</td>
+                            <td>
+                                <div class="score-container">
+                                    <div class="score-row">
+                                        <span class="team-name">কিং সুপার স্টার</span>
+                                        <span class="team-runs">১৬১/৩ <span class="over-text">(১২ ওভার)</span></span>
+                                    </div>
+                                    <div class="score-row our-team">
+                                        <span class="team-name">ফ্রেন্ডস ক্রিকেট ক্লাব</span>
+                                        <span class="team-runs">১৬৪/৬ <span class="over-text">(১১.৫ ওভার)</span></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="win-badge">৪ উইকেটে জয়ী</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- গ্যালারি সেকশন -->
+        <section id="gallery">
+            <h2>ক্লাব গ্যালারি</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="g1.jpg" alt="ম্যাচ প্র্যাকটিস ১" class="gallery-trigger">
+                </div>
+                <div class="gallery-item">
+                    <img src="g2.jpg" alt="টিম মিটিং" class="gallery-trigger">
+                </div>
+                <div class="gallery-item">
+                    <img src="g3.jpg" alt="টিম মিটিং" class="gallery-trigger">
+                </div>
+                <div class="gallery-item">
+                    <img src="g4.jpg" alt="টিম মিটিং" class="gallery-trigger">
+                </div>
+                <div class="gallery-item">
+                    <img src="g5.jpg" alt="বিজয় উদযাপন" class="gallery-trigger">
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ইমেজ বড় করার মোডাল (Lightbox) -->
+    <div id="imageModal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modalImg" alt="Lightbox Large Image View">
+    </div>
+
+    <!-- ফুটার সেকশন -->
+    <footer>
+        <p>&copy; 2026 ফ্রেন্ডস ক্রিকেট ক্লাব। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- লাইটবক্স মোডাল সচল করার জাভাস্ক্রিপ্ট কোড -->
+    <script>
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImg");
+        var closeBtn = document.getElementsByClassName("close-btn")[0];
+
+        // সব ছবিতে ক্লিক করলে মোডাল ওপেন হওয়ার লজিক
+        document.querySelectorAll('.gallery-trigger, .player-img-area img').forEach(img => {
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        });
+
+        // ক্লোজ বাটনে ক্লিক করলে বন্ধ হওয়া
+        closeBtn.onclick = function() { 
+            modal.style.display = "none";
+        }
+
+        // মোডালের বাইরে ক্লিক করলে বন্ধ হওয়া
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+```
